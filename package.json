@@ -1,0 +1,9 @@
+{
+  "name": "prosumer-snapshot",
+  "version": "1.0.0",
+  "description": "A tool to emulate various snapshots of scenarios of prosumers to test different services of vaidyuti.",
+  "main": "index.js",
+  "repository": "https://github.com/rithviknishad/prosumer-snapshot",
+  "author": "Rithvik Nishad <mail@rithviknishad.dev>",
+  "license": "MIT"
+}
