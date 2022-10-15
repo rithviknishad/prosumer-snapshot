@@ -4,9 +4,11 @@ const mqtt = require("mqtt");
 const MQTT_URL = process.env.MQTT_URL;
 const client = mqtt.connect(`mqtt://${MQTT_URL}`);
 
-const setState = (id, exportPower, baseSellingPrice) => {
-  client.publish(`prosumer/${id}/export_power`, `${exportPower}`);
-  client.publish(`prosumer/${id}/base_selling_price`, `${baseSellingPrice}`);
+const writeData = (id, export_power, base_selling_price) => {
+  const timestamp = new Date().toISOString();
+  const data = JSON.stringify({ export_power, base_selling_price, timestamp });
+
+  client.publish(`prosumer/${id}/data`, data);
 };
 
 const handleOnConnect = () => {
@@ -16,14 +18,14 @@ const handleOnConnect = () => {
   const classPrices = snapshot.classPrices;
 
   Object.keys(snapshot.sellers).map((id) =>
-    setState(
+    writeData(
       id,
       +snapshot.sellers[id].power,
       classPrices[snapshot.sellers[id].class]
     )
   );
   Object.keys(snapshot.buyers).map((id) =>
-    setState(id, -snapshot.buyers[id].power, 0.0)
+    writeData(id, -snapshot.buyers[id].power, 0.0)
   );
   client.end();
 };
