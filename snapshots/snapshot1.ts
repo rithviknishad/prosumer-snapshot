@@ -13,7 +13,6 @@ const snapshot: Snapshot = {
     "002": { power: 2000, class: "SOLAR" },
     "003": { power: 3000, class: "WIND" },
     "004": { power: 2000, class: "WIND" },
-    "007": { power: 2000, class: "SOLAR" },
   },
 
   buyers: {
