@@ -8,14 +8,14 @@ const writeData = (
   id,
   export_power,
   base_selling_price,
-  _class,
+  category,
   is_external
 ) => {
   const timestamp = new Date().toISOString();
   const data = JSON.stringify({
     export_power,
     base_selling_price,
-    class: _class,
+    category,
     is_external,
     timestamp,
   });
