@@ -14,7 +14,7 @@ const writeData = (
   const timestamp = new Date().toISOString();
   const data = {
     export_power,
-    base_selling_price,
+    base_trade_price,
     category,
     is_external,
   };
