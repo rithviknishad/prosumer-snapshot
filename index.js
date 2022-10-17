@@ -12,15 +12,19 @@ const writeData = (
   is_external
 ) => {
   const timestamp = new Date().toISOString();
-  const data = JSON.stringify({
+  const data = {
     export_power,
     base_selling_price,
     category,
     is_external,
-    timestamp,
-  });
+  };
 
-  client.publish(`prosumer/${id}/data`, data);
+  Object.keys(data).forEach((field) =>
+    client.publish(
+      `prosumer/${id}/${field}`,
+      JSON.stringify({ value: data[field], timestamp })
+    )
+  );
 };
 
 const handleOnConnect = () => {
