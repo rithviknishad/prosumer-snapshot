@@ -7,7 +7,7 @@ const client = mqtt.connect(`mqtt://${MQTT_URL}`);
 const writeData = (
   id,
   export_power,
-  base_selling_price,
+  base_trade_price,
   category,
   is_external
 ) => {
